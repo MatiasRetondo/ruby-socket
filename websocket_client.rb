@@ -3,9 +3,8 @@ require 'eventmachine'
 require 'json'
 
 class WebSocketClient
-  def initialize(url, symbol, callback)
+  def initialize(url, callback)
     @url = url
-    @symbol = symbol
     @callback = callback
   end
 
@@ -18,7 +17,8 @@ class WebSocketClient
         subscription_message = {
           "op": "subscribe",
           "args": [
-              "tickers.ETHUSDT"
+              "tickers.ETHUSDT",
+              "tickers.BTCUSDT"
           ]
       }
         @ws.send(JSON.generate(subscription_message)) #envia el mensaje de suscripcion
