@@ -17,11 +17,10 @@ class WebSocketClient
         puts 'WebSocket connection opened.'
         subscription_message = {
           "op": "subscribe",
-          "args": [
-              @tickers
-          ]
+          "args": @tickers
       }
-        @ws.send(JSON.generate(subscription_message)) #envia el mensaje de suscripcion
+      p subscription_message
+      @ws.send(JSON.generate(subscription_message)) #envia el mensaje de suscripcion
       end
 
       @ws.on :message do |event|  #cuando llega un mensaje le pega al callback que esta en main

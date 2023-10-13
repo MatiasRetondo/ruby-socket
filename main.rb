@@ -2,23 +2,10 @@ require_relative 'websocket_client'
 require 'rest-client'
 require 'json'
 
-@cont = 0
-@priceBTC = 0
-@priceETH = 0
 def handle_message(data)
   response = data['data']
   if response
-    @cont += 1 if response['markPrice']
-    p @cont
-    @priceBTC = response['markPrice'] if response['symbol'] == 'BTCUSDT' && response['markPrice']
-    @priceETH = response['markPrice'] if response['symbol'] == 'ETHUSDT' && response['markPrice']
-    p "BTC: #{@priceBTC}"
-    p "ETH: #{@priceETH}"
-  end
-
-  if @cont == 10
-    @websocket.close_websocket
-    EM.stop
+    p "Symbol: #{response['symbol']}, Mark Price: #{response['markPrice']}" if response['markPrice']
   end
 end
 
