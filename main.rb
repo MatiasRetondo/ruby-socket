@@ -64,5 +64,5 @@ Thread.new { show_modified_tickers }
 @websocket = WebSocketClient.new(url, method(:handle_message), get_all_tickers)
 @websocket.start
 
-# crea el hilo que mantiene el websocket vivo
-#Thread.new { EM.run } # lo comento porque antes usaba EM.run pero ahora no, capaz lo necesitamos para algo mas
+# crea el hilo principal y mantiene vivo el coso, pero al no usar mas el EM.run no se si es necesario, ahora uso solo el thread de arriba
+#Thread.new { EM.run }
