@@ -19,7 +19,6 @@ class WebSocketClient
           "op": "subscribe",
           "args": @tickers
       }
-      p subscription_message
       @ws.send(JSON.generate(subscription_message)) #envia el mensaje de suscripcion
       end
 
