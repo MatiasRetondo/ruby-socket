@@ -46,19 +46,17 @@ def show_modified_tickers
       p "Tickers modificados:"
       modified_tickers.each do |ticker| # generalmente muestra caaasi todos, aca podemos poner lo de la db pero no se si nos jode en cuanto a la infra
         p "Ticker: #{ticker[:ticker]}, Precio Anterior: #{ticker[:old_price]}, Precio Actual: #{ticker[:last_price]}"
-        #conn.exec_params('UPDATE coins SET price = $1 WHERE ticker = $2', [ticker[:last_price], ticker[:ticker]]) #revisar esto, mi sql esta medio oxidado
+        conn.exec_params('UPDATE coins SET price = $1 WHERE ticker = $2', [ticker[:last_price], ticker[:ticker]])
       end
       p "tickers modificados: #{modified_tickers.count}/#{@ticker_data.count}"
     end
   end
 end
 
-#se me corto internet y no me acuerdo si esto estaba bien aca o tenia que ponerlo en el show
-
 conn = PG.connect(
-  dbname: 'db_socket', 
+  dbname: 'socket_db', 
   user: 'mati',        
-  password: '123456789',  
+  password: 'Azimutal1!',  
   host: 'localhost',          
   port: 5432                 # Creo que es el puerto por defecto, revisar
 )
